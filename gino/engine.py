@@ -68,7 +68,7 @@ class _DBAPIConnection(_BaseDBAPIConnection):
                 after = time.monotonic()
                 timeout -= after - before
             if self._conn is None:
-                self._conn = await self._pool.acquire(timeout=timeout)
+                self._conn = await self._pool.acquire()
             return self._conn
         finally:
             self._lock.release()
@@ -648,7 +648,7 @@ class GinoEngine:
                                  stack if reusable else None)
         dbapi_conn.gino_conn = rv
         if not lazy:
-            await dbapi_conn.acquire(timeout=timeout)
+            await dbapi_conn.acquire()
         if reusable:
             stack.push(dbapi_conn)
         return rv

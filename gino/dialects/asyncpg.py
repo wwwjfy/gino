@@ -172,8 +172,7 @@ class DBAPICursor(base.DBAPICursor):
                                               timeout_)
 
         with getattr(conn, '_stmt_exclusive_section'):
-            result, stmt = await getattr(conn, '_do_execute')(
-                query, executor, timeout)
+            result, stmt = await conn._do_execute(query, executor, timeout)
             try:
                 self._attributes = getattr(stmt, '_get_attributes')()
             except TypeError:  # asyncpg <= 0.12.0

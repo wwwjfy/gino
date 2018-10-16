@@ -17,7 +17,7 @@ class GinoStrategy(EngineStrategy):
         if loop is None:
             loop = asyncio.get_event_loop()
         if u.drivername in {'postgresql', 'postgres'}:
-            u.drivername = 'postgresql+asyncpg'
+            u.drivername = 'postgresql+triopg'
 
         dialect_cls = u.get_dialect()
 
