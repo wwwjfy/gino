@@ -2,15 +2,6 @@ name: test
 
 on:
   push:
-    branches:
-      - master
-      - v*.*.x
-    tags:
-    - 'v*.*.*'
-  pull_request:
-    branches:
-      - master
-      - v*.*.x
 
 jobs:
   test:
